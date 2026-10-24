@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="回答 8 个来自潜意识的问题，看看你的上辈子从事哪一种职业。"
+    />
+    <meta name="theme-color" content="#0c0b12" />
+    <meta property="og:title" content="前世档案馆 · 你的上辈子是哪种职业？" />
+    <meta property="og:description" content="回答 8 个来自潜意识的问题，唤醒一段被时间封存的职业记忆。" />
+    <meta property="og:type" content="website" />
+    <title>前世档案馆 · 你的上辈子是哪种职业？</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230c0b12'/%3E%3Cpath d='M32 9l4.8 18.2L55 32l-18.2 4.8L32 55l-4.8-18.2L9 32l18.2-4.8z' fill='%23e7cd97'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <div class="aurora aurora-one"></div>
+      <div class="aurora aurora-two"></div>
+      <div class="stars" id="stars"></div>
+      <div class="grain"></div>
+    </div>
+
+    <main class="app">
+      <header class="topbar">
+        <a class="brand" href="#" id="brandLink" aria-label="返回首页">
+          <span class="brand-sigil" aria-hidden="true">✦</span>
+          <span class="brand-name">前世档案馆</span>
+          <span class="brand-en">PAST LIFE ARCHIVE</span>
+        </a>
+        <p class="top-note">灵魂考古实验 · 仅供娱乐</p>
+      </header>
+
+      <section class="screen intro-screen is-active" id="introScreen">
+        <div class="intro-copy">
+          <p class="eyebrow"><span></span>灵魂档案 · 编号 001</p>
+          <h1>你的上辈子，<br /><em>藏着哪种职业？</em></h1>
+          <p class="lede">
+            有些天赋，也许不是今生才学会的。<br />
+            回答 8 个来自潜意识的问题，唤醒一段被时间封存的职业记忆。
+          </p>
+
+          <div class="intro-actions">
+            <button class="primary-button" id="startButton" type="button">
+              <span>开启我的前世档案</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h13M13 6l6 6-6 6" />
+              </svg>
+            </button>
+            <span class="time-note">约 90 秒 · 无需登录</span>
+          </div>
+
+          <div class="archive-note">
+            <div class="avatar-stack" aria-hidden="true">
+              <span>诗</span><span>星</span><span>匠</span>
+            </div>
+            <p><strong id="archiveCount">1,284</strong> 份灵魂档案今日已归档</p>
+          </div>
+        </div>
+
+        <div class="oracle-stage" aria-hidden="true">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <div class="orbit-node node-one"></div>
+          <div class="orbit-node node-two"></div>
+          <div class="orbit-node node-three"></div>
+
+          <div class="tarot-wrap">
+            <div class="tarot-shadow"></div>
+            <article class="tarot-card">
+              <div class="tarot-frame">
+                <div class="card-topline">
+                  <span>XVII</span>
+                  <span>THE UNKNOWN SELF</span>
+                </div>
+                <div class="card-sky">
+                  <div class="card-moon"></div>
+                  <svg class="constellation" viewBox="0 0 240 190" fill="none">
+                    <path d="M32 136 77 98l31 20 41-60 25 42 34-17" />
+                    <circle cx="32" cy="136" r="3" />
+                    <circle cx="77" cy="98" r="4" />
+                    <circle cx="108" cy="118" r="2.5" />
+                    <circle cx="149" cy="58" r="4" />
+                    <circle cx="174" cy="100" r="2.5" />
+                    <circle cx="208" cy="83" r="3" />
+                  </svg>
+                  <span class="star-mark star-mark-one">✦</span>
+                  <span class="star-mark star-mark-two">✧</span>
+                  <span class="star-mark star-mark-three">·</span>
+                </div>
+                <div class="card-title">THE<br />UNKNOWN<br /><i>SELF</i></div>
+                <div class="card-divider"><span></span>✦<span></span></div>
+                <p class="card-caption">前世档案 · 待启封</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="floating-tag tag-left">
+            <span class="tag-dot"></span>
+            直觉型灵魂
+          </div>
+          <div class="floating-tag tag-right">
+            <span class="tag-icon">☾</span>
+            今日宜回溯
+          </div>
+        </div>
+      </section>
+
+      <section class="screen quiz-screen" id="quizScreen" aria-live="polite">
+        <div class="quiz-shell">
+          <div class="quiz-top">
+            <button class="back-button" id="backButton" type="button" aria-label="返回上一题">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H6M11 7l-5 5 5 5" />
+              </svg>
+              <span>上一题</span>
+            </button>
+
+            <div class="progress">
+              <div class="progress-meta">
+                <span>灵魂回溯进度</span>
+                <span id="progressPercent">12%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+
+            <div class="question-index">
+              <span id="currentQuestion">01</span>
+              <i>/</i>
+              <span>08</span>
+            </div>
+          </div>
+
+          <div class="question-layout">
+            <aside class="question-aside" aria-hidden="true">
+              <p>MEMORY<br />FRAGMENT</p>
+              <span class="aside-line"></span>
+              <div class="aside-number" id="asideNumber">01</div>
+              <span class="aside-star">✦</span>
+            </aside>
+
+            <div class="question-content" id="questionContent">
+              <p class="question-kicker" id="questionKicker">第一段记忆</p>
+              <h2 class="question-title" id="questionTitle"></h2>
+              <div class="options" id="options" role="group" aria-labelledby="questionTitle"></div>
+            </div>
+          </div>
+
+          <footer class="quiz-footer">
+            <p>选择没有对错，只有灵魂的偏向。</p>
+            <span>按下数字键 1—4 也可以作答</span>
+          </footer>
+        </div>
+      </section>
+
+      <section class="screen result-screen" id="resultScreen" aria-live="polite">
+        <div class="result-heading">
+          <p class="eyebrow"><span></span>灵魂回溯完成</p>
+          <h2>
+            原来，你的上辈子是<span class="heading-result" id="resultHeadingName"></span><span class="heading-dot">。</span>
+          </h2>
+          <p>有些记忆已经模糊，但天赋替你记住了。</p>
+        </div>
+
+        <div class="result-layout">
+          <article class="profession-card" id="professionCard">
+            <div class="profession-card-inner">
+              <div class="card-meta">
+                <span>ARCHIVE OF A PAST LIFE</span>
+                <span id="archiveNumber">NO. 0000</span>
+              </div>
+
+              <div class="profession-visual">
+                <span class="visual-ring ring-one"></span>
+                <span class="visual-ring ring-two"></span>
+                <span class="visual-star star-a">✦</span>
+                <span class="visual-star star-b">✧</span>
+                <div class="profession-glyph" id="professionGlyph">星</div>
+                <p class="profession-era" id="professionEra">观星台 · 某个无月的夜</p>
+              </div>
+
+              <div class="profession-name-wrap">
+                <p class="profession-en" id="professionEn">THE CELESTIAL CARTOGRAPHER</p>
+                <h3 id="professionTitle">星象师</h3>
+                <p class="profession-subtitle" id="professionSubtitle"></p>
+              </div>
+
+              <div class="keyword-row" id="keywordRow"></div>
+
+              <div class="profession-card-footer">
+                <span>PAST LIFE ARCHIVE</span>
+                <span class="footer-star">✦</span>
+                <span id="archiveDate">MMXXVI</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="result-details">
+            <blockquote class="result-quote">
+              <span>“</span>
+              <p id="resultQuote"></p>
+            </blockquote>
+
+            <p class="result-description" id="resultDescription"></p>
+
+            <div class="stat-grid">
+              <div class="stat-item">
+                <span>灵魂年龄</span>
+                <strong id="soulAge"></strong>
+              </div>
+              <div class="stat-item">
+                <span>天赋倾向</span>
+                <strong id="talent"></strong>
+              </div>
+              <div class="stat-item">
+                <span>命运信物</span>
+                <strong id="luckyItem"></strong>
+              </div>
+              <div class="stat-item">
+                <span>灵魂共振</span>
+                <strong id="affinity"></strong>
+              </div>
+            </div>
+
+            <div class="memory-fragment">
+              <span class="memory-label">一段前世记忆</span>
+              <p id="resultMemory"></p>
+            </div>
+
+            <div class="result-actions">
+              <button class="primary-button" id="shareButton" type="button">
+                <span>复制我的前世档案</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 8h10v11H8zM6 16H5V5h10v1" />
+                </svg>
+              </button>
+              <button class="ghost-button" id="restartButton" type="button">
+                再测一次
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast-star">✦</span>
+      <span id="toastText">档案已复制</span>
+    </div>
+
+    <noscript>
+      <p class="noscript-note">请开启 JavaScript，才能开启你的前世档案。</p>
+    </noscript>
+
+    <script src="app.js"></script>
+  </body>
+</html>
